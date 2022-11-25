@@ -15,7 +15,10 @@
 
 
         <form action='logout/' method="POST">
+            <!--
+            This is the secure implementation
 			{% csrf_token %}
+            -->
             <input type="submit" value="Logout"/>
         </form>
 		
@@ -30,7 +33,10 @@
 		<a href="download/{{file.id}}">Download</a>
 		<td>
         <form action='delete/' method="POST">
+            <!--
+            This is the secure implementation
 			{% csrf_token %}
+            -->
             <input type="hidden" name="id" value="{{file.id}}" />
             <input type="submit" value="Delete"/>
         </form>
@@ -39,9 +45,12 @@
 		</table>
 
         <h2>Add file</h2>
-
+        
         <form action='add/' method="POST" enctype="multipart/form-data">
+            <!--
+            This is the secure implementation
 			{% csrf_token %}
+            -->
 			<input type="file" name="file" id="file"/>
             <input type="submit" value="Add"/>
         </form>
