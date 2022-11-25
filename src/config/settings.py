@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-SESSION_COOKIE_HTTPONLY = False
+MEDIA_ROOT = BASE_DIR + '/media'
 
 
 # Application definition

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title>Bank of UniHelsinki</title>
+        <title>File Uploader</title>
     </head>
 
 
     <body>
-		<h1>Bank of UniHelsinki</h1>
+		<h1>File Uploader</h1>
 
         <table>
 		<tr>
@@ -19,25 +19,31 @@
             <input type="submit" value="Logout"/>
         </form>
 		
-        <h2>Your IBAN accounts</h2>
+        <h2>Your files</h2>
 
-		<ul>
-		{% for a in accounts %}
-
-		<li>{{a.iban}}
-		</li>
+        <table>
+		{% for file in uploads %}
+		<tr>
+		<td>
+		{{file.name}}
+		<td>
+		<a href="download/{{file.id}}">Download</a>
+		<td>
+        <form action='delete/' method="POST">
+			{% csrf_token %}
+            <input type="hidden" name="id" value="{{file.id}}" />
+            <input type="submit" value="Delete"/>
+        </form>
 
 		{% endfor %}
-		</ul>
+		</table>
 
+        <h2>Add file</h2>
 
-        <h2>Create a new account</h2>
-
-        <form action='add/' method="POST">
-            {% csrf_token %}
-
-			<input type="text" name="iban"/><br/>
-            <input type="submit" value="Send"/>
+        <form action='add/' method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<input type="file" name="file" id="file"/>
+            <input type="submit" value="Add"/>
         </form>
     </body>
 
