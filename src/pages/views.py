@@ -22,8 +22,6 @@ def downloadView(request, fileid):
     
     f = File.objects.get(pk=fileid)
     
-    """
-    This is the secure implementation
     if f.owner == request.user:
     
         filename = f.data.name.split('/')[-1]
@@ -34,12 +32,6 @@ def downloadView(request, fileid):
     
 
     return redirect('/')
-    """
-    filename = f.data.name.split('/')[-1]
-    response = HttpResponse(f.data, content_type='text/plain')
-    response['Content-Disposition'] = 'attachment; filename=%s' % filename
-
-    return response
   
 
 
