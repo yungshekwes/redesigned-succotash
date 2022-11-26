@@ -44,10 +44,7 @@
         <h2>Add file</h2>
         
         <form action='add/' method="POST" enctype="multipart/form-data">
-            <!--
-            This is the secure implementation
 			{% csrf_token %}
-            -->
 			<input type="file" name="file" id="file"/>
             <input type="submit" value="Add"/>
         </form>
