@@ -4,7 +4,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .models import File
 
-
 @login_required
 def deleteView(request):
     f = File.objects.get(pk=request.POST.get('id'))
@@ -16,7 +15,6 @@ def deleteView(request):
     f.delete()
     return redirect('/')
     
-
 @login_required
 def downloadView(request, fileid):	
     
@@ -29,19 +27,15 @@ def downloadView(request, fileid):
         response['Content-Disposition'] = 'attachment; filename=%s' % filename
   
         return response
-    
 
     return redirect('/')
   
-
-
 @login_required
 def addView(request):
     data = request.FILES.get('file')
     f = File(owner=request.user, data=data)
     f.save()
     return redirect('/')
-
 
 @login_required
 def homePageView(request):

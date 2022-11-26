@@ -13,7 +13,9 @@
 		<th style="text-align:left">Username: <td>{{user.username}} 
 		</table>
 
-
+        <!--
+            The fix here would be to make use of POST instead of GET for logging out
+        -->
         <form action='logout/' method="GET">
 			{% csrf_token %}
             <input type="submit" value="Logout"/>
@@ -34,6 +36,7 @@
             This is the secure implementation
 			{% csrf_token %}
             -->
+            {% csrf_token %}
             <input type="hidden" name="id" value="{{file.id}}" />
             <input type="submit" value="Delete"/>
         </form>
