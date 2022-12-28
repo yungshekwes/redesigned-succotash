@@ -1,0 +1,31 @@
+{% extends "./base.html" %}
+{% block title %}Transfer page{% endblock %}
+{% block content %}
+
+<div>
+    <div style="text-align: center">
+        <h1>Transfer money</h1>
+        <h3/>This is where you can transfer money, {{owner.username}}
+        <form action="/transfer/{{owner.id}}/" method="GET">
+            <h3/>Select recipient:
+            <div>
+                <div>
+                    <select id="sel1" name="to">
+                        {% for user in users %}
+                            {% if owner.id != user.id %} 
+                            <option value="{{user.id}}">{{user.username}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <input type="number" placeholder="Amount" name="amount"/>
+                    <input type="submit" value="Transfer"></input>
+                </div>
+            </div>  
+        </form>  
+        <h3/>Your remaining balance is: €{{owner.balance}}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "./base.html" %}
+{% block title %}Manager page{% endblock %}
+{% block content %}
+
+<div>
+    <div style="text-align: center">
+        <h1>Manager Page</h1>
+        <h4>Manager Status of 0 represents manager, while Manager Status of 1 represents customer.</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Balance</th>
+                    <th>Account Number</th>
+                    <th>Manager Status</th>
+                    <th>Add/Remove Manager Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>                   
+                        <td>{{user.username}}</td>
+                        <td>{{user.balance}}</td>
+                        <td>{{user.account_number}}</td>
+                        <td>{{user.status}}</td>
+                        <td>
+                            {% if user.status == 0 %}
+                                <form action="/manager/{{owner.id}}/" method= "POST">
+                                    {% csrf_token %}
+                                    <input type="submit" value="Remove"/>
+                                    <input type="hidden" name="old_manager_status" value="{{user.id}}"/>
+                                </form>
+                            {% else %}
+                                <form action="/manager/{{owner.id}}/" method= "POST">
+                                    {% csrf_token %}
+                                    <input type="submit" value="Add"/>
+                                    <input type="hidden" name="new_manager_status" value="{{user.id}}"/>
+                                </form>                       
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

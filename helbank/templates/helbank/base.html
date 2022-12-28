@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Bank of Helsinki</title>
+    </head>
+
+    <body>
+        <div>
+            <h1>
+                <a href="/">
+                    Bank of Helsinki
+                </a>
+            </h1>     
+        </div>
+        
+        <nav>
+            <div>
+                <ul>              
+                    {% if request.session.user_id %}
+                        <li>
+                            <a href="/account/{{request.session.user_id}}">Account Overview</a>
+                        </li>
+                        <li>
+                            <a href="/deposit/{{request.session.user_id}}">Deposit</a>
+                        </li>
+                        <li>
+                            <a href="/transfer/{{request.session.user_id}}">Transfer</a>
+                        </li>
+                        {% if request.session.manager %}
+                            <li>
+                                <a href="/manager/{{request.session.user_id}}">Manager Page</a>
+                            </li>
+                        {% endif %}
+                        <li>
+                            <a href="/logout/">Logout</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="/login/">Login</a>
+                        </li>
+                        <li>
+                            <a href="/signup/">Sign Up</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>  
+        </nav>
+        {% block content %}
+        
+        {% endblock %}
+
+        <footer>
+            <br>
+            This webapp contains flaws and is done in completion of University of Helsinki's Cyber Security Base course.
+        </footer>
+
+    </body>
+</html>

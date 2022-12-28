@@ -1,0 +1,26 @@
+{% extends "./base.html" %}
+{% block title %}Main account page{% endblock %}
+{% block content %}
+
+<div>
+    <div style="text-align: center">
+        <h1/>Welcome back, {{owner.username}}.
+        <h3/>Your account number is: {{owner.account_number}}
+        {% if owner.purpose == "" %}
+            <h5/>If you would like, you can enter the purpose of your account here.
+            <h5/>This can help you keep track of your financials better.
+        {% else %}
+        <h3/>Account purpose: {{owner.purpose|safe}}
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            <div>
+                <input type="text" placeholder="Enter or edit purpose" name="purpose"/>
+                <input type="submit" value="Add"></input>
+            </div>
+        </form>
+        <h3/>Your remaining balance is: €{{owner.balance}}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "./base.html" %}
+{% block title %}Sign up for HelBank{% endblock %}
+{% block content %}
+
+<div style="text-align: center">
+    <h1>
+        Sign up for Bank of Helsinki
+    </h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            <input type="text" placeholder="Your username" name="username"/>
+            <br>
+            <input type="text" placeholder="Your password" name="password"/>
+            <br>    
+            <input type="submit" value="Create account"/>
+        </div>     
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "./base.html" %}
+{% block title %}Error page{% endblock %}
+{% block content %}
+
+<div style="text-align: center">
+    <h1/>Error!
+    <h3/>{{request.session.error}}
+    <h3/>Please try again.
+
+</div>
+
+{% endblock %}

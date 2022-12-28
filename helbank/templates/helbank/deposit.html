@@ -1,0 +1,21 @@
+{% extends "./base.html" %}
+{% block title %}Deposit page{% endblock %}
+{% block content %}
+
+<div>    
+    <div style="text-align: center">
+        <h1/>Deposit money
+        <h3/>This is where you can deposit money, {{owner.username}}
+        <form action="/deposit/{{owner.id}}/" method="POST">
+            {% csrf_token %}
+            <div>
+                <input type="text" placeholder="Amount" name="amount"/>
+                <input type="hidden" name="user_id" value={{owner.id}}>
+                <input type="submit" value="Deposit"></input>
+            </div>  
+        </form>
+        <h3/>Your balance is: €{{owner.balance}}
+    </div>
+</div>
+
+{% endblock %}
