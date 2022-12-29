@@ -6,7 +6,14 @@
     <div style="text-align: center">
         <h1>Transfer money</h1>
         <h3/>This is where you can transfer money, {{owner.username}}
+        <!--
+            Flaw 1: There is no CSRF token verification here, and also the form method is GET.
+            Fix: Add in the commented out CSRF verification, and also change the form method to a POST.
+        -->
         <form action="/transfer/{{owner.id}}/" method="GET">
+            <!--
+                {% csrf_token %}
+            -->
             <h3/>Select recipient:
             <div>
                 <div>

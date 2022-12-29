@@ -94,6 +94,8 @@ def transfer(req, Customer_id):
     users = Customer.objects.all()
     req.session["message"] = ""
 
+    # Flaw 1: Using req.GET instead of req.POST
+    # Fix: Change the req.GET... to req.POST
     if req.GET.get("to") != None and req.GET.get("amount") != None:
         recipient = Customer.objects.get(id = req.GET.get("to"))
         amount = int(req.GET.get("amount"))
