@@ -10,6 +10,7 @@
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Password</th>
                     <th>Balance</th>
                     <th>Account Number</th>
                     <th>Manager Status</th>
@@ -20,6 +21,13 @@
                 {% for user in users %}
                     <tr>                   
                         <td>{{user.username}}</td>
+                        <!--
+                            Flaw 3: No encryption of passwords used, and password is still stored in plaintext.
+                            Fix: Use the inbuilt Django User model which has capabilities for encryption of passwords for the users
+                            and have an additional custom model that references the Django User model.
+                            Also remove the password field on display in the manager page.
+                        -->
+                        <td>{{user.password}}</td>
                         <td>{{user.balance}}</td>
                         <td>{{user.account_number}}</td>
                         <td>{{user.status}}</td>

@@ -1,5 +1,9 @@
 from django.db import models
 
+# Flaw 3: No encryption of passwords used, and password is still stored in plaintext.
+# Fix: Use the inbuilt Django User model which has capabilities for encryption of passwords for the users
+# and have an additional custom model that references the Django User model.
+# Also remove the password field on display in the manager page.
 class Customer(models.Model):
 	username = models.TextField()
 	# Flaw 2: There is no checking mechanism for passwords to be more secure, i.e.: this allows '1234' to be a password.

@@ -37,6 +37,10 @@ def login(req):
             req.session["error"] = "Wrong username or password"
             return redirect("error")
 
+# Flaw 3: No encryption of passwords used, and password is still stored in plaintext.
+# Fix: Use the inbuilt Django User model which has capabilities for encryption of passwords for the users
+# and have an additional custom model that references the Django User model. 
+# Also remove the password field on display in the manager page.
 def signup(req):
     if req.method == "GET":
         if req.session.get("user_id", None):
