@@ -89,6 +89,10 @@ def deposit(req, Customer_id):
         amount = req.POST.get("amount")
         try:
             with connection.cursor() as cursor:
+                # Flaw 4: Raw SQL query being used, vulnerable to SQL injection attacks
+                # Fix: Use Django ORM as such:
+                # user.balance += amount
+                # user.save()
                 cursor.execute(f"UPDATE helbank_Customer SET balance = balance + {amount} WHERE id = {Customer_id}")
                 req.session["message"] = "Deposit Successful"
         except:
