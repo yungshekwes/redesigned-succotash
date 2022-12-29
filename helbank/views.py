@@ -46,6 +46,9 @@ def signup(req):
     
     if req.method == "POST":
         username = req.POST["username"]
+        # Flaw 2: There is no checking mechanism for passwords to be more secure, i.e.: this allows '1234' to be a password.
+        # Fix: Implementing a password checking function that ensures that a password is of a certain length,
+        # contains alphanumeric characters and has some symbols, to make for a more secure password.
         password = req.POST["password"]
         if len(Customer.objects.filter(username = username)) != 0:
             req.session["error"] = "Username taken, try with another username!"
