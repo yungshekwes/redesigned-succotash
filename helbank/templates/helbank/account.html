@@ -10,6 +10,12 @@
             <h5/>If you would like, you can enter the purpose of your account here.
             <h5/>This can help you keep track of your financials better.
         {% else %}
+        <!--
+            Flaw 5: XSS vulnerability due to the use of the safe tag in rendering, and also the 
+            fact that logged in users can access other user's accounts.
+            Fix: Remove the safe tag in the html file, and implement a checking mechanism to ensure that the Customer_id
+            is the same as that of the session, so that a logged in user cannot access someone else' account.
+        -->
         <h3/>Account purpose: {{owner.purpose|safe}}
         {% endif %}
         <form method="POST">

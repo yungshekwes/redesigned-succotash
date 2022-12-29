@@ -68,6 +68,10 @@ def signup(req):
                 req.session["manager"] = False
             return redirect(reverse("account", kwargs = {"Customer_id" : user_id}))            
 
+# Flaw 5: XSS vulnerability due to the use of the safe tag in rendering, and also the 
+# fact that logged in users can access other user's accounts.
+# Fix: Remove the safe tag in the html file, and implement a checking mechanism to ensure that the Customer_id
+# is the same as that of the session, so that a logged in user cannot access someone else' account. 
 def account(req, Customer_id):
     user = Customer.objects.get(id = Customer_id)
 
